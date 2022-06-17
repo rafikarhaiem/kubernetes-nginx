@@ -32,7 +32,7 @@ RUN echo "date.timezone=Europe/Rome" >> /usr/local/etc/php/php.ini
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN chown -R www-data:www-data /srv/app
-RUN chmod -R 777 storage
-RUN chmod -R 777 bootstrap/cache
+RUN chmod -R 755 storage
+RUN chmod -R 755 bootstrap/cache
 EXPOSE 9000
 CMD ["php-fpm"]

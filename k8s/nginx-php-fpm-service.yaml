@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app
+  name: web
+  namespace: default
+spec:
+  ports:
+  - name: port-1
+    port: 9000
+    protocol: TCP
+    targetPort: 9000
+  - name: port-2
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: app
+
+

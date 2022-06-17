@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    name: mysql
+  name: mysql
+  namespace: default
+spec:
+  podManagementPolicy: OrderedReady
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      name: mysql
+  serviceName: mysql
+  template:
+    metadata:
+      labels:
+        name: mysql
+      namespace: default
+    spec:
+      containers:
+      - args:
+        - --ignore-db-dir=lost+found
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+        - name: MYSQL_DATABASE
+          value: laravel
+        - name: MYSQL_USER
+          value: user
+        - name: MYSQL_PASSWORD
+          value: user
+        image: mysql:5.7
+        imagePullPolicy: IfNotPresent
+        name: container-mysql
+        ports:
+        - containerPort: 3306
+          protocol: TCP
+      #volumes:
+        #- name: secret
+          #secret:
+          #secretName: mysecret
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: mysql-persistent-storage
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+  updateStrategy:
+    type: OnDelete

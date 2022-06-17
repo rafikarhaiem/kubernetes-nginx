@@ -28,7 +28,7 @@ spec:
         - name: APP_ENV
           value: local
         - name: APP_KEY
-          value: base64:nqFxOgBxRPOo9PQfMeYw16nxl5Jl+HpHHfFwBWvHPs0=
+          value: 
         - name: APP_DEBUG
           value: "true"
         - name: APP_LOG_LEVEL
@@ -40,11 +40,11 @@ spec:
         - name: DB_HOST
           value: mysql
         - name: DB_DATABASE
-          value: laravel
+          value: 
         - name: DB_USERNAME
-          value: user
+          value: 
         - name: DB_PASSWORD
-          value: user
+          value: 
         - name: BROADCAST_DRIVER
           value: "pusher"
         - name: CACHE_DRIVER

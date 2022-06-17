@@ -26,11 +26,11 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           value: root
         - name: MYSQL_DATABASE
-          value: laravel
+          value: 
         - name: MYSQL_USER
-          value: user
+          value: 
         - name: MYSQL_PASSWORD
-          value: user
+          value: 
         image: mysql:5.7
         imagePullPolicy: IfNotPresent
         name: container-mysql
